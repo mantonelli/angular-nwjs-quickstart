@@ -1,13 +1,20 @@
 {
-  "name": "manager",
-  "version": "0.0.0",
+  "name": "quick-start",
+  "description": "Quick start Angular/NW.js application",
+  "version": "0.0.1",
+  "build": {
+    "nwVersion": "0.46.0"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng serve --port=8964\" \"nw .\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dist": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
+    "run-x86": "run --x86 --mirror https://dl.nwjs.io/ .",
+    "run-x64": "run --x64 --mirror https://dl.nwjs.io/ ."
   },
   "private": true,
   "dependencies": {
@@ -28,10 +35,11 @@
     "@angular/cli": "~9.1.0",
     "@angular/compiler-cli": "~9.1.0",
     "@angular/language-service": "~9.1.0",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "concurrently": "^5.2.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -39,9 +47,25 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "nw": "^0.46.0-sdk",
+    "nwjs-builder-phoenix": "^1.15.0",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "@angular-devkit/architect": "~0.900",
+    "firebase-tools": "^8.0.0",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1"
+  },
+  "main": "http://localhost:8964",
+  "node-remote": "http://localhost:8964",
+  "window": {
+    "width": 960,
+    "height": 600,
+    "min_width": 700,
+    "min_height": 500,
+    "icon": "your-app-logo.png"
   }
 }
